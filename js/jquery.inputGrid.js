@@ -7,10 +7,10 @@
 /**
  * Input Grid - jQuery Plugin
  *
- * Version: 0.1.0 (10/05/2012)
+ * Version: 0.1.1 (5/21/2012)
  * Requires: jQuery v1.7+
  *
- * Copyright (c) 2011 Adam Draper
+ * Copyright (c) 2011 Adam Draper - http://github.com/adamwdraper
  * Under MIT and GPL licenses:
  *  http://www.opensource.org/licenses/mit-license.php
  *  http://www.gnu.org/licenses/gpl.html
@@ -35,19 +35,13 @@
                     offset = $this.offset(),
                     data = $this.data('initialized');
          
-                // If the plugin hasn't been initialized yet
                 if ( ! data ) {
                     $this = $(this);
-                    // set plugin to initialized
                     $this.data('initialized', true);
-                    // append beacon
                     $this.append($beacon);
-                    // main grid object
                     Grid = {
                         width: $this.width(),
                         height: $this.height(),
-                        columns: options.columns || 10,
-                        rows: options.rows || 10,
                         left: offset.left,
                         top: offset.top,
                         x: {
@@ -87,7 +81,7 @@
                             }
 
                             if(xPrev != this.x.value || yPrev != this.y.value) {
-                                $this.trigger('changed');
+                                $this.trigger('change');
                             }
                         },
                         getCoords: function() {
@@ -105,9 +99,8 @@
                         }
                     };
                     
-                    Grid.cols = (Grid.x.max - Grid.x.min) + 1;
-                    Grid.rows = (Grid.y.max - Grid.y.min) + 1;
-                    Grid.x.base = Grid.width / (Grid.cols);
+                    Grid.rows = (Grid.x.max - Grid.x.min) + 1;
+                    Grid.x.base = Grid.width / (Grid.rows);
                     if(Grid.x.value === Grid.x.min) {
                         Grid.x.row = 0;
                     } else if(Grid.x.value === Grid.x.max) {
@@ -115,7 +108,9 @@
                     } else {
                         Grid.x.row = Grid.x.value;
                     }
-                    Grid.y.base = Grid.height / (Grid.rows);
+                    
+                    Grid.cols = (Grid.y.max - Grid.y.min) + 1;
+                    Grid.y.base = Grid.height / (Grid.cols);
                     if(Grid.y.value === Grid.y.min) {
                         Grid.y.col = 0;
                     } else if(Grid.y.value === Grid.y.max) {
@@ -123,14 +118,14 @@
                     } else {
                         Grid.y.col = Grid.y.value;
                     }
-                    // initial beacon position
+
                     Grid.beacon.position();
 
                     $this.on('mousedown', function(e) {
                         Grid.setCoords(e.pageX, e.pageY);
                         Grid.startDrag();
                     })
-                    .on('changed', function() {
+                    .on('change', function() {
                         Grid.beacon.position();
                     });
                     
@@ -158,7 +153,7 @@
         } else if ( typeof method === 'object' || ! method ) {
             return methods.init.apply( this, arguments );
         } else {
-            $.error( 'Method ' +  method + ' does not exist on jQuery.tooltip' );
+            $.error( 'Method ' +  method + ' does not exist on jQuery.inputGrid' );
         }
 
     };
