@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style type="text/css">
+            #grid {
+                position: relative;
+                background: #EFEFEF;
+                width: 300px;
+                height: 300px;
+                border-radius: 10px;
+            }
+            .beacon {
+                position: absolute;
+                background: #666;
+                width: 20px;
+                height: 20px;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="coords">
+            <p>
+                X: <span id="x">0</span> | Y: <span id="y">0</span>
+            </p>
+        </div>
+        <div id="grid"></div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/jquery.inputGrid-0.1.0.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#grid').inputGrid({
+                x: {
+                    min: 1,
+                    max: 20
+                },
+                y: {
+                    min: 1,
+                    max: 20
+                }
+            }).on('changed', function() {
+                var coords = $(this).inputGrid('getCoords');
+                $('#x').text(coords.x);
+                $('#y').text(coords.y);
+            });
+        });
+    </script>
+    </body>
+</html>
