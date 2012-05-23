@@ -7,7 +7,7 @@
 /**
  * Input Grid - jQuery Plugin
  *
- * Version: 0.2.0 (5/21/2012)
+ * Version: 0.2.1 (5/22/2012)
  * Requires: jQuery v1.7+
  *
  * Copyright (c) 2011 Adam Draper - http://github.com/adamwdraper
@@ -146,13 +146,13 @@
                 }
             });
         },
-        getCoords : function( ) {
+        value: function() {
             return {
                 x: Grid.x.value,
                 y: Grid.y.value
             };
         },
-        setCoords : function(coords) {
+        set: function(coords) {
             Grid.setCoords(coords.x, coords.y);
         },
         reset: function() {

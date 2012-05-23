@@ -63,13 +63,13 @@
                     max: 20
                 }
             }).on('change', function() {
-                var coords = $(this).inputGrid('getCoords');
+                var coords = $(this).inputGrid('value');
                 $('#x').text(coords.x);
                 $('#y').text(coords.y);
             });
             
             $('#set').on('click', function() {
-                $('#grid').inputGrid('setCoords', {x: 4, y:5});
+                $('#grid').inputGrid('set', {x: 4, y:5});
             });
 
             $('#reset').on('click', function() {
