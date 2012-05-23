@@ -95,6 +95,8 @@
 
       </section>
       <footer>
+        <p><g:plusone size="medium"></g:plusone> <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a> <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fadamwdraper.github.com%2FInputGrid%2F&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px; display: inline-block;" allowTransparency="true"></iframe></p>
+        <p></p>
         <p>This project is maintained by <a href="https://github.com/adamwdraper">adamwdraper</a></p>
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
@@ -129,6 +131,16 @@
                 $('#grid').inputGrid('reset');
             });
         });
+        
+        // google plus
+        (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+        
+        // twitter
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
     </script>
   </body>
 </html>
