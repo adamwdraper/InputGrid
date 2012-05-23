@@ -43,7 +43,7 @@
                 A jQuery Plugin | <a href="http://github.com/adamwdraper/InputGrid">View on Github</a>
             </p>
             <p>
-                X: <span id="x">0</span> | Y: <span id="y">0</span>
+                X: <span id="x">1</span> | Y: <span id="y">1</span> | <a id="set" href="#">Set to X: 4, Y: 5</a> | <a id="reset" href="#">Reset</a> 
             </p>
         </header>
         <div class="grid-wrapper">
@@ -67,6 +67,15 @@
                 $('#x').text(coords.x);
                 $('#y').text(coords.y);
             });
+            
+            $('#set').on('click', function() {
+                $('#grid').inputGrid('setCoords', {x: 4, y:5});
+            });
+
+            $('#reset').on('click', function() {
+                $('#grid').inputGrid('reset');
+            });
+            
         });
     </script>
     </body>

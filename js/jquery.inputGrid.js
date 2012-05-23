@@ -7,7 +7,7 @@
 /**
  * Input Grid - jQuery Plugin
  *
- * Version: 0.1.1 (5/21/2012)
+ * Version: 0.2.0 (5/21/2012)
  * Requires: jQuery v1.7+
  *
  * Copyright (c) 2011 Adam Draper - http://github.com/adamwdraper
@@ -39,6 +39,7 @@
                     $this = $(this);
                     $this.data('initialized', true);
                     $this.append($beacon);
+                    
                     Grid = {
                         width: $this.width(),
                         height: $this.height(),
@@ -64,7 +65,7 @@
                                 });
                             }
                         },
-                        setCoords: function(x, y) {
+                        setCoordsFromOffset: function(x, y) {
                             var xPrev = this.x.value,
                                 yPrev = this.y.value,
                                 row = Math.floor((x - this.left) / this.x.base),
@@ -84,13 +85,23 @@
                                 $this.trigger('change');
                             }
                         },
-                        getCoords: function() {
+                        setCoords: function(x, y) {
+                            
+                            var xPrev = this.x.value,
+                                yPrev = this.y.value;
 
+                            this.x.value = x;
+                            this.x.row = this.x.value - this.x.min;
+                            this.y.value = y;
+                            this.y.col = this.y.value - this.y.min;
+                            if(xPrev != this.x.value || yPrev != this.y.value) {
+                                $this.trigger('change');
+                            }
                         },
                         
                         startDrag: function() {
                             $this.on('mousemove', function(e) {
-                                Grid.setCoords(e.pageX, e.pageY);
+                                Grid.setCoordsFromOffset(e.pageX, e.pageY);
                             });
                         },
                         
@@ -101,28 +112,28 @@
                     
                     Grid.rows = (Grid.x.max - Grid.x.min) + 1;
                     Grid.x.base = Grid.width / (Grid.rows);
-                    if(Grid.x.value === Grid.x.min) {
-                        Grid.x.row = 0;
-                    } else if(Grid.x.value === Grid.x.max) {
-                        Grid.x.row = Grid.x.max - 1;
-                    } else {
-                        Grid.x.row = Grid.x.value;
+                    if(Grid.x.value < Grid.x.min) {
+                        Grid.x.value = Grid.x.min;
+                    } else if(Grid.x.value > Grid.x.max) {
+                        Grid.x.value = Grid.x.max;
                     }
                     
                     Grid.cols = (Grid.y.max - Grid.y.min) + 1;
                     Grid.y.base = Grid.height / (Grid.cols);
-                    if(Grid.y.value === Grid.y.min) {
-                        Grid.y.col = 0;
-                    } else if(Grid.y.value === Grid.y.max) {
-                        Grid.y.col = Grid.y.max - 1;
-                    } else {
-                        Grid.y.col = Grid.y.value;
+                    if(Grid.y.value < Grid.y.min) {
+                        Grid.y.value = Grid.y.min;
+                    } else if(Grid.y.value > Grid.y.max) {
+                        Grid.y.value = Grid.y.max;
                     }
+                    
+                    Grid.x.initValue = Grid.x.value;
+                    Grid.y.initValue = Grid.y.value;
 
+                    Grid.setCoords(Grid.x.value, Grid.y.value);
                     Grid.beacon.position();
 
                     $this.on('mousedown', function(e) {
-                        Grid.setCoords(e.pageX, e.pageY);
+                        Grid.setCoordsFromOffset(e.pageX, e.pageY);
                         Grid.startDrag();
                     })
                     .on('change', function() {
@@ -141,8 +152,11 @@
                 y: Grid.y.value
             };
         },
-        setCoords : function( x, y ) {
-            Grid.setCoords(x, y);
+        setCoords : function(coords) {
+            Grid.setCoords(coords.x, coords.y);
+        },
+        reset: function() {
+            Grid.setCoords(Grid.x.initValue, Grid.y.initValue);
         }
     };
 
