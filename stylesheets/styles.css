@@ -183,6 +183,31 @@ footer {
   bottom:50px;
 }
 
+/* Custom ---------------------*/
+.grid-wrapper {
+    background: #EFEFEF;
+    border-radius: 10px;
+    width: 98%;
+    padding: 5px;
+    margin-bottom: 2em; 
+}
+#grid {
+    position: relative;
+    height: 300px;
+}
+.beacon {
+    position: absolute;
+    background: #39C;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.beacon:active {
+    cursor: pointer;
+}
+
 @media print, screen and (max-width: 960px) {
   
   div.wrapper {

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>InputGrid by adamwdraper</title>
+    <title>Input Grid by adamwdraper</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -15,9 +15,9 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>InputGrid</h1>
+        <h1>Input Grid</h1>
         <p></p>
-        <p class="view"><a href="https://github.com/adamwdraper/InputGrid">View the Project on GitHub <small>adamwdraper/InputGrid</small></a></p>
+        <p class="view"><a href="https://github.com/adamwdraper/InputGrid">adamwdraper/InputGrid</a></p>
         <ul>
           <li><a href="https://github.com/adamwdraper/InputGrid/zipball/master">Download <strong>ZIP File</strong></a></li>
           <li><a href="https://github.com/adamwdraper/InputGrid/tarball/master">Download <strong>TAR Ball</strong></a></li>
@@ -25,39 +25,79 @@
         </ul>
       </header>
       <section>
-        <h3>Welcome to GitHub Pages.</h3>
+        <h3>
+            A jQuery plugin that turns an element into an interactive grid. 
+        </h3>
+        <p>
+            X: <span id="x">5</span> | Y: <span id="y">16</span>
+        </p>
+        <div class="grid-wrapper">
+            <div id="grid"></div>
+        </div>
+            
+            <h3>Example code</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>The html:</p>
+<pre><code>&lt;div id="grid"&gt;&lt;/div&gt;
+</code></pre>
+<p>The javascript:</p>
+<pre><code>
+// Include jQuery
+&lt;script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"&gt;&lt;/script&gt;
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+// Include Input Grid minified script
+&lt;script src="javascripts/jquery.inputGrid.min.js"&gt;&lt;/script&gt;
+
+// On Document Ready turn your element into an input grid
+&lt;script type="text/javascript"&gt;
+    $(function() {
+        $('#grid').inputGrid({
+            x: {
+                value: 5,
+                min: 1,
+                max: 30
+            },
+            y: {
+                value: 16,
+                min: 1,
+                max: 20
+            }
+        }).on('change', function() {
+            var coords = $(this).inputGrid('getCoords');
+            // do something cool with coords.x and coords.y here
+        });
+    });
+&lt;/script&gt;
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/adamwdraper">adamwdraper</a></p>
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="javascripts/scale.fix.js"></script>
-    
+    <script src="javascripts/jquery.inputGrid.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#grid').inputGrid({
+                x: {
+                    value: 5,
+                    min: 1,
+                    max: 30
+                },
+                y: {
+                    value: 16,
+                    min: 1,
+                    max: 20
+                }
+            }).on('change', function() {
+                var coords = $(this).inputGrid('getCoords');
+                $('#x').text(coords.x);
+                $('#y').text(coords.y);
+            });
+        });
+    </script>
   </body>
 </html>
