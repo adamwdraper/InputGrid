@@ -29,7 +29,7 @@
             A jQuery plugin that turns an element into an interactive grid. 
         </h3>
         <p>
-            X: <span id="x">5</span> | Y: <span id="y">16</span>
+            X: <span id="x">5</span> | Y: <span id="y">16</span>  | <a id="set" href="#">Set to X: 24, Y: 11</a> | <a id="reset" href="#">Reset</a>
         </p>
         <div class="grid-wrapper">
             <div id="grid"></div>
@@ -66,6 +66,14 @@
             var coords = $(this).inputGrid('getCoords');
             // do something cool with coords.x and coords.y here
         });
+
+        $('#set').on('click', function() {
+            $('#grid').inputGrid('setCoords', {x: 24, y: 11});
+        });
+
+        $('#reset').on('click', function() {
+            $('#grid').inputGrid('reset');
+        });
     });
 &lt;/script&gt;
 </code></pre>
@@ -96,6 +104,14 @@
                 var coords = $(this).inputGrid('getCoords');
                 $('#x').text(coords.x);
                 $('#y').text(coords.y);
+            });
+            
+            $('#set').on('click', function() {
+                $('#grid').inputGrid('setCoords', {x: 24, y: 11});
+            });
+
+            $('#reset').on('click', function() {
+                $('#grid').inputGrid('reset');
             });
         });
     </script>
