@@ -197,11 +197,9 @@ footer {
     border:1px solid #e5e5e5;
 }
 #grid {
-    position: relative;
     height: 300px;
 }
 .beacon {
-    position: absolute;
     background: #39C;
     width: 20px;
     height: 20px;
