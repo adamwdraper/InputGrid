@@ -128,6 +128,10 @@ header li {
   height:40px;
 }
 
+header li:hover {
+    background: #dddddd;
+}
+
 header ul a {
   line-height:1;
   font-size:11px;
@@ -185,11 +189,12 @@ footer {
 
 /* Custom ---------------------*/
 .grid-wrapper {
-    background: #EFEFEF;
+    background: #f8f8f8;
     border-radius: 10px;
     width: 98%;
     padding: 5px;
-    margin-bottom: 2em; 
+    margin-bottom: 2em;
+    border:1px solid #e5e5e5;
 }
 #grid {
     position: relative;
