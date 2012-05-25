@@ -7,7 +7,7 @@
 /**
  * Input Grid - jQuery Plugin
  *
- * Version: 0.2.2 (5/23/2012)
+ * Version: 0.3.0 (5/24/2012)
  * Requires: jQuery v1.7+
  *
  * Copyright (c) 2011 Adam Draper - http://github.com/adamwdraper
