@@ -7,7 +7,7 @@
 /**
  * Input Grid - jQuery Plugin
  *
- * Version: 0.2.2 (5/23/2012)
+ * Version: 0.3.0 (5/24/2012)
  * Requires: jQuery v1.7+
  *
  * Copyright (c) 2011 Adam Draper - http://github.com/adamwdraper
@@ -112,8 +112,17 @@
                             });
                         },
                         
+                        startTouchDrag: function() {
+                            $this.on('touchmove', function(e) {
+                                e = e.originalEvent;
+                                var touch = e.targetTouches[0];
+                                Grid.setCoordsFromOffset(touch.pageX, touch.pageY);
+                                e.preventDefault();
+                            });
+                        },
+
                         stopDrag: function() {
-                            $this.off('mousemove');
+                            $this.off('mousemove touchmove');
                         }
                     };
                     
@@ -143,11 +152,19 @@
                         Grid.setCoordsFromOffset(e.pageX, e.pageY);
                         Grid.startDrag();
                     })
+                    .on('touchstart', function(e) {
+                        e = e.originalEvent;
+                        if (e.targetTouches.length == 1) {
+                            var touch = e.targetTouches[0];
+                            Grid.setCoordsFromOffset(touch.pageX, touch.pageY);
+                            Grid.startTouchDrag();
+                        }
+                    })
                     .on('change', function() {
                         Grid.beacon.position();
                     });
                     
-                    $(document).on('mouseup', function(e) {
+                    $(document).on('mouseup touchend', function(e) {
                         Grid.stopDrag();
                     });
                 }
