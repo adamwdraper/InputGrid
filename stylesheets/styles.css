@@ -272,6 +272,11 @@ footer {
   header ul {
     display:none;
   }
+  
+  /* Custom ---------------------*/
+    #grid {
+        height: 170px;
+    }
 }
 
 @media print {
