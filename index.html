@@ -123,12 +123,14 @@
                 $('#y').text(coords.y);
             });
             
-            $('#set').on('click', function() {
+            $('#set').on('click', function(e) {
                 $('#grid').inputGrid('set', {x: 24, y: 11});
+                e.preventDefault();
             });
 
-            $('#reset').on('click', function() {
+            $('#reset').on('click', function(e) {
                 $('#grid').inputGrid('reset');
+                e.preventDefault();
             });
         });
         
