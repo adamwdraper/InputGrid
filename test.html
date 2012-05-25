@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Input Grid by adamwdraper</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-31984911-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="wrapper">
+        <p>
+            X: <span id="x">5</span> | Y: <span id="y">16</span>  | <a id="set" href="#">Set to X: 24, Y: 11</a> | <a id="reset" href="#">Reset</a>
+        </p>
+        <div class="grid-wrapper">
+            <div id="grid"></div>
+        </div>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/scale.fix.js"></script>
+    <script src="javascripts/jquery.inputGrid.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#grid').inputGrid({
+                x: {
+                    value: 5,
+                    min: 1,
+                    max: 30
+                },
+                y: {
+                    value: 16,
+                    min: 1,
+                    max: 20
+                }
+            }).on('change', function() {
+                var coords = $(this).inputGrid('value');
+                $('#x').text(coords.x);
+                $('#y').text(coords.y);
+            });
+            
+            $('#set').on('click', function() {
+                $('#grid').inputGrid('set', {x: 24, y: 11});
+            });
+
+            $('#reset').on('click', function() {
+                $('#grid').inputGrid('reset');
+            });
+        });
+        
+        // google plus
+        (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+        
+        // twitter
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+    </script>
+  </body>
+</html>
