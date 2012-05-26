@@ -7,7 +7,7 @@
 /**
  * Input Grid - jQuery Plugin
  *
- * Version: 0.3.0 (5/24/2012)
+ * Version: 0.3.1 (5/25/2012)
  * Requires: jQuery v1.7+
  *
  * Copyright (c) 2011 Adam Draper - http://github.com/adamwdraper
@@ -123,6 +123,7 @@
 
                         stopDrag: function() {
                             $this.off('mousemove touchmove');
+                            $this.trigger('release');
                         }
                     };
                     
