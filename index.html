@@ -77,9 +77,16 @@
                 min: 1,
                 max: 20
             }
-        }).on('change', function() {
-            var coords = $(this).inputGrid('value');
-            // do something cool with coords.x and coords.y here
+        })
+        .on('change', function() {
+            var value = $(this).inputGrid('value');
+            // do something cool with value.x and value.y here
+            // change event triggered anytime the value changes
+        })
+        .on('release', function() {
+            var value = $(this).inputGrid('value');
+            // do something cool with value.x and value.y here
+            // release event triggered on mouseup or touchend
         });
 
         $('#set').on('click', function() {
