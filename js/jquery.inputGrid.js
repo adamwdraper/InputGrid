@@ -7,7 +7,7 @@
 /**
  * Input Grid - jQuery Plugin
  *
- * Version: 0.3.1 (5/25/2012)
+ * Version: 0.3.2 (5/25/2012)
  * Requires: jQuery v1.7+
  *
  * Copyright (c) 2011 Adam Draper - http://github.com/adamwdraper
@@ -166,7 +166,9 @@
                     });
                     
                     $(document).on('mouseup touchend', function(e) {
-                        Grid.stopDrag();
+                        if ($(e.target)[0] === $beacon[0]) {
+                            Grid.stopDrag();
+                        }
                     });
                 }
             });
